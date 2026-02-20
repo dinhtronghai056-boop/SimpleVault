@@ -15,7 +15,21 @@ public class Main extends JavaPlugin implements Listener {
 
     private boolean enabled = true;
     private final Set<Material> allowed = new HashSet<>();
+@Override
+public boolean onCommand(org.bukkit.command.CommandSender sender,
+                         org.bukkit.command.Command command,
+                         String label,
+                         String[] args) {
 
+    if (command.getName().equalsIgnoreCase("simplevault")) {
+
+        enabled = !enabled;
+
+        sender.sendMessage("SimpleVault: " + (enabled ? "Bat" : "Tat"));
+        return true;
+    }
+    return false;
+}
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
