@@ -4,8 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
@@ -22,35 +22,33 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
-        getLogger().info("SimpleVault enabled!");
+        getLogger().info("SimpleVault da bat!");
     }
 
+    // Tạo hoặc lấy kho của người chơi
     private Inventory getVault(Player player) {
         return vaults.computeIfAbsent(player.getUniqueId(),
-                uuid -> Bukkit.createInventory(null, 54, "Kho cua ban"));
+                uuid -> Bukkit.createInventory(null, 54, "Kho cua " + player.getName()));
     }
 
+    // Lệnh /kho
     @Override
-    public boolean onCommand(CommandSender sender,
-                             Command command,
-                             String label,
-                             String[] args) {
-
-        if (!command.getName().equalsIgnoreCase("kho"))
-            return false;
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage("Chi dung trong game!");
+            sender.sendMessage("Chi nguoi choi moi dung duoc lenh nay!");
             return true;
         }
 
         Player player = (Player) sender;
 
+        // /kho -> mở kho của mình
         if (args.length == 0) {
             player.openInventory(getVault(player));
             return true;
         }
 
+        // /kho <player> -> admin xem kho người khác
         if (!player.hasPermission("simplevault.admin")) {
             player.sendMessage("Ban khong co quyen!");
             return true;
@@ -68,6 +66,7 @@ public class Main extends JavaPlugin implements Listener {
         return true;
     }
 
+    // Hút vật phẩm khi đào block
     @EventHandler
     public void onBreak(BlockBreakEvent e) {
 
