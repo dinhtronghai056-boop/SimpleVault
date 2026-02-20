@@ -34,6 +34,7 @@ public boolean onCommand(org.bukkit.command.CommandSender sender,
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(this, this);
+        vault = Bukkit.createInventory(null, 54, "Simple Vault");
         getLogger().info("SimpleVault enabled!");
     }
 
