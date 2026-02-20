@@ -3,9 +3,14 @@ version: 1.0
 main: me.hai.simplevault.Main
 api-version: 1.21
 author: HaiDz
-description: Plugin hút vật phẩm khi đào
+description: Plugin hut vat pham khi dao
 
 commands:
-  simplevault:
-    description: Bat tat hut vat pham
-    usage: /simplevault
+  kho:
+    description: Mo kho ca nhan
+    usage: /kho
+
+permissions:
+  simplevault.admin:
+    description: Xem kho nguoi khac
+    default: op
