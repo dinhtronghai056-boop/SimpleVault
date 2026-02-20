@@ -37,9 +37,22 @@ public boolean onCommand(org.bukkit.command.CommandSender sender,
         vault = Bukkit.createInventory(null, 54, "Simple Vault");
         getLogger().info("SimpleVault enabled!");
     }
+@EventHandler
+public void onBreak(BlockBreakEvent e) {
 
-    @EventHandler
-    public void onBreak(BlockBreakEvent e) {
+    if (!enabled) return;
+
+    Material type = e.getBlock().getType();
+    if (!allowed.contains(type)) return;
+
+    for (ItemStack drop : e.getBlock().getDrops()) {
+        vault.addItem(drop);
+    }
+
+    e.setDropItems(false);
+}
+    
+     {
         if (!enabled) return;
 
         Material type = e.getBlock().getType();
