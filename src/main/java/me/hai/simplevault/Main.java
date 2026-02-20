@@ -6,13 +6,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Main extends JavaPlugin implements Listener {
-
+private Inventory vault;
     private boolean enabled = true;
     private final Set<Material> allowed = new HashSet<>();
 @Override
