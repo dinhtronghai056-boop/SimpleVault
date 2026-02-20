@@ -1,0 +1,6 @@
+name: SimpleVault
+version: 1.0
+main: me.hai.simplevault.Main
+api-version: 1.21
+author: HaiDz
+description: Plugin hút vật phẩm khi đào
